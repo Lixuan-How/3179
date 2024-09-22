@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choropleth Map</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+    <h1>Choropleth Map of Malaysia</h1>
+
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+        const spec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "width": 800,
+            "height": 600,
+            "layer": [
+                {
+                    "data": {
+                        "url": "js/geoBoundaries-MYS-ADM1_simplified.json",  // Path to your GeoJSON file
+                        "format": {"type": "json"}
+                    },
+                    "mark": "geoshape",
+                    "encoding": {
+                        "color": {
+                            "field": "properties.population_density", // Should match the GeoJSON structure
+                            "type": "quantitative",
+                            "scale": {"scheme": "blues"}
+                        },
+                        "tooltip": [
+                            {"field": "properties.state_name", "type": "nominal", "title": "State"},
+                            {"field": "properties.population_density", "type": "quantitative", "title": "Population Density"}
+                        ]
+                    }
+                },
+                {
+                    "data": {
+                        "url": "Malaysia_States.csv",  
+                        "format": {"type": "csv"}
+                    },
+                    "transform": [
+                        {
+                            "lookup": "properties.state_name",  // Match key in your GeoJSON
+                            "from": {
+                                "data": {
+                                    "url": "Malaysia_States.csv",
+                                    "format": {"type": "csv"}
+                                },
+                                "key": "state_name",  // Key in your CSV that matches GeoJSON
+                                "fields": ["population_density"]  // Field to add to GeoJSON
+                            }
+                        }
+                    ],
+                    "mark": "geoshape",
+                    "encoding": {
+                        "color": {
+                            "field": "population_density", 
+                            "type": "quantitative",
+                            "scale": {"scheme": "blues"}
+                        },
+                        "tooltip": [
+                            {"field": "state_name", "type": "nominal", "title": "State"},
+                            {"field": "population_density", "type": "quantitative", "title": "Population Density"}
+                        ]
+                    }
+                }
+            ],
+            "projection": {
+                "type": "mercator"
+            }
+        };
+
+        vegaEmbed('#vis', spec).then(function(result) {
+            // Access the Vega view instance as result.view
+        }).catch(console.error);
+    </script>
+</body>
+</html>

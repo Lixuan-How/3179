@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Population Density (Data Not Available)",
+    "width": 800,
+    "height": 600,
+    "data": {
+      "url": "file:///C:/Users/lixua/Documents/Monash%20University/Monash%202024%20Sem%202/FIT%203179/Project%202/js/geoBoundaries-MYS-ADM1_simplified.json",  
+      "format": {"type": "json"}
+    },
+    "projection": {"type": "mercator"},
+    "layer": [
+      {
+        "transform": [
+          {
+            "calculate": "'Data is not available for ' + datum.properties.state_name",
+            "as": "note"
+          }
+        ],
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+        "encoding": {
+          "tooltip": {
+            "field": "note"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "lookup": "properties.state_name",
+            "from": {
+              "data": {
+                "url": "file:///C:/Users/lixua/Documents/Monash University/Monash 2024 Sem 2/FIT 3179/Project 2/Data/population_state.csv",
+                "format": {"type": "csv"}
+              },
+              "key": "state_name",
+              "fields": ["population_density"] 
+            }
+          }
+        ],
+        "mark": {"type": "geoshape", "stroke": "white"},
+        "encoding": {
+          "color": {
+            "field": "population_density",
+            "type": "quantitative",
+            "scale": {
+              "scheme": "blues" 
+            }
+          },
+          "tooltip": [
+            {"field": "properties.state_name", "type": "nominal", "title": "State"},
+            {"field": "population_density", "type": "quantitative", "title": "Population Density"}
+          ]
+        }
+      }
+    ]
+  }
+  
