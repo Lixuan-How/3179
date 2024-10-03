@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Population Density of Malaysia States (2022)",
+  "title": "Population Density of Malaysia States (1987)",
   "width": 800,
   "height": 400,
   "projection": {"type": "equalEarth"},
@@ -16,17 +16,18 @@
         "key": "state",
         "fields": ["population_density"]
       }
-    }
+    },
+    {"calculate": "datum.population_density + 0.1", "as": "population density"}  
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
       "field": "population_density",
       "type": "quantitative",
-      "scale": {"type": "log","scheme": "blues"}
+      "scale": {"type": "log", "scheme": "blues"}
     },
     "tooltip": [
-      {"field": "properties.name", "type": "nominal", "title": "state"},
+      {"field": "properties.name", "type": "nominal", "title": "State"},
       {"field": "population_density", "type": "quantitative"}
     ]
   }
