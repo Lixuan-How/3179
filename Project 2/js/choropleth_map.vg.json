@@ -1,52 +1,33 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Population Density of Malaysian States (2022)",
-    "width": 800,
-    "height": 400,
-    "projection": {"type": "mercator"},
-    "data": {
-      "url": "file:///C:/Users/lixua/Documents/Monash%20University/Monash%202024%20Sem%202/FIT%203179/Project%202/js/geoBoundaries-MYS-ADM1_simplified.json",
-      "format": {"type": "json"}
-    },
-    "transform": [
-      {
-        "lookup": "properties.state",
-        "from": {
-          "data": {
-            "url": "file:///C:/Users/lixua/Documents/Monash University/Monash 2024 Sem 2/FIT 3179/Project 2/Data/population_state.csv"
-          },
-          "key": "state",
-          "fields": ["population (in Thousands)"]
-        }
-      },
-      {
-        "lookup": "properties.state_name",  
-        "from": {
-          "data": {
-            "url": "file:///C:/Users/lixua/Documents/Monash University/Monash 2024 Sem 2/FIT 3179/Project 2/Data/Malaysia_States.csv"
-          },
-          "key": "state_name",  
-          "fields": ["Land Size (km^2)"] 
-        }
-      },
-      {
-        "filter": "datum.year === '2022' && datum.age === 'overall' && datum.sex === 'both' && datum.ethnicity === 'overall'"
-      },
-      {
-        "calculate": "datum.population (in Thousands) / datum.Land Size (km^2)", 
-        "as": "population_density"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Population Density of Malaysia States (2022)",
+  "width": 800,
+  "height": 400,
+  "projection": {"type": "equalEarth"},
+  "data": {
+    "url": "js/my.topojson",
+    "format": {"type": "topojson", "feature": "my"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {"url": "data/temporary_normalised_population_2022.csv"},
+        "key": "state",
+        "fields": ["population_density"]
       }
-    ],
-    "mark": {"type": "geoshape"},
-    "encoding": {
-      "color": {
-        "field": "population_density",
-        "type": "quantitative",
-        "scale": {"type": "log"}
-      },
-      "tooltip": [
-        {"field": "properties.NAME", "type": "nominal", "title": "State"},
-        {"field": "population_density", "type": "quantitative"}
-      ]
     }
+  ],
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "population_density",
+      "type": "quantitative",
+      "scale": {"type": "log","scheme": "blues"}
+    },
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "state"},
+      {"field": "population_density", "type": "quantitative"}
+    ]
   }
+}
