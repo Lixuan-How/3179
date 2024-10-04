@@ -1,0 +1,38 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Population Density of Malaysia States (2022)",
+    "width": 800,
+    "height": 400,
+    "projection": {"type": "equalEarth"},
+    "data": {
+      "url": "js/my.topojson",
+      "format": {"type": "topojson", "feature": "my"}
+    },
+    "transform": [
+      {
+        "lookup": "properties.name",
+        "from": {
+          "data": {"url": "data/normalised_population_density.csv"},
+          "key": "state",
+          "fields": ["population_density", "year", "sex", "age", "ethnicity"]
+        }
+      },
+      {
+        "filter": "datum.year == '2022' && datum.age == 'overall' && datum.sex == 'both' && datum.ethnicity == 'overall'"
+      }
+    ],
+    "mark": {"type": "geoshape"},
+    "encoding": {
+      "color": {
+        "field": "population_density",
+        "type": "quantitative",
+        "scale": {
+          "scheme": "blues"
+        }
+      },
+      "tooltip": [
+        {"field": "properties.name", "type": "nominal", "title": "State"},
+        {"field": "population_density", "type": "quantitative"}
+      ]
+    }
+  }
