@@ -25,13 +25,28 @@
     "color": {
       "field": "population_density",
       "type": "quantitative",
-      "scale": {"type": "threshold", 
-        "domain": [20, 50, 100, 500, 1000, 8000], 
-  "range": ["#ffebeb", "#ffc4c4", "#ff8989", "#ff6262", "#ff1414", "#d80000", "#890000"]}
+      "scale": {
+        "type": "threshold",
+        "domain": [20, 50, 100, 500, 1000, 8000],
+        "range": [
+          "#ffebeb",
+          "#ffc4c4",
+          "#ff8989",
+          "#ff6262",
+          "#ff1414",
+          "#d80000",
+          "#890000"
+        ]
+      }
     },
     "tooltip": [
       {"field": "properties.name", "type": "nominal", "title": "State"},
-      {"field": "population_density", "type": "quantitative", "title": "Population number per km^2",  "format": ".2f"}
+      {
+        "field": "population_density",
+        "type": "quantitative",
+        "title": "Population number per km^2",
+        "format": ".2f"
+      }
     ]
   }
 }
