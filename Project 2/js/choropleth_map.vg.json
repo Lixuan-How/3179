@@ -5,8 +5,8 @@
   "height": 400,
   "projection": {"type": "equalEarth"},
   "data": {
-    "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/my.topojson",
-    "format": {"type": "topojson", "feature": "my"}
+    "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/my_map.topojson",
+    "format": {"type": "topojson", "feature": "my_map"}
   },
   "transform": [
     {
