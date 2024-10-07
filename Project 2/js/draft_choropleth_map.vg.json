@@ -1,38 +1,54 @@
+
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Population Density of Malaysia States (2022)",
-    "width": 800,
-    "height": 400,
-    "projection": {"type": "equalEarth"},
-    "data": {
-      "url": "js/my.topojson",
-      "format": {"type": "topojson", "feature": "my"}
-    },
-    "transform": [
-      {
-        "lookup": "properties.name",
-        "from": {
-          "data": {"url": "data/normalised_population_density.csv"},
-          "key": "state",
-          "fields": ["population_density", "year", "sex", "age", "ethnicity"]
-        }
-      },
-      {
-        "filter": "datum.year == '2022' && datum.age == 'overall' && datum.sex == 'both' && datum.ethnicity == 'overall'"
-      }
-    ],
-    "mark": {"type": "geoshape"},
-    "encoding": {
-      "color": {
-        "field": "population_density",
-        "type": "quantitative",
-        "scale": {
-          "scheme": "blues"
-        }
-      },
-      "tooltip": [
-        {"field": "properties.name", "type": "nominal", "title": "State"},
-        {"field": "population_density", "type": "quantitative"}
-      ]
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"title": "Population Density of Malaysia States (2022)",
+"width": 800,
+"height": 400,
+"projection": {"type": "equalEarth"},
+"data": {
+    "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/my.topojson",
+    "format": {"type": "topojson", "feature": "my"}
+},
+"transform": [
+    {
+    "lookup": "properties.name",
+    "from": {
+        "data": {
+        "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/temporary_normalised_population_2022.csv"
+        },
+        "key": "state",
+        "fields": ["land_size_km^2", "population_thousands"]
     }
-  }
+    },
+    {"calculate": "(datum.population_thousands * 1000)/datum.land_size_km^2", "as": "Density"}
+],
+"mark": {"type": "geoshape"},
+"encoding": {
+    "color": {
+    "field": "Density",
+    "type": "quantitative",
+    "scale": {
+        "type": "threshold",
+        "domain": [20, 50, 100, 500, 1000, 8000],
+        "range": [
+        "#ffebeb",
+        "#ffc4c4",
+        "#ff8989",
+        "#ff6262",
+        "#ff1414",
+        "#d80000",
+        "#890000"
+        ]
+    }
+    },
+    "tooltip": [
+    {"field": "properties.name", "type": "nominal", "title": "State"},
+    {
+        "field": "Density",
+        "type": "quantitative",
+        "title": "Population number per km^2",
+        "format": ".2f"
+    }
+    ]
+}
+}
