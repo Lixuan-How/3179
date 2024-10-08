@@ -1,0 +1,34 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": { "text": "Population Density in 2022 of overall ethnicities and age" },
+    "data": {
+        "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/normalised_population_density.csv"
+    },
+    "transform": [
+        {"filter": "datum.year == 2022"},
+        {"filter": "datum.age == 'overall'"},
+        {"filter": "datum.ethnicity == 'overall'"},
+        {"filter": "datum.sex == 'female'"},
+    {"calculate": "(datum.population_thousands*1000)/datum.land_size_sq_km", "as": "Density"}
+],
+    "mark": "bar",
+    "encoding": {
+        "x": { "field": "state", "type": "nominal", "title": null},
+        "y": { "field": "population_density", "type": "quantitative"},
+    "tooltip": [
+    {"field": "state", "type": "nominal", "title": "State"},
+    {"field": "land_size_sq_km", "type": "quantitative", "title": "Land Size (km²)", "format": ".2f"},
+    {"field": "population_thousands", "type": "quantitative", "title": "Population (thousands)", "format": ".2f"},
+    {
+        "field": "Density",
+        "type": "quantitative",
+        "title": "Population number per km^2",
+        "format": ".2f"
+    },
+    {"field": "year", "type": "quantitative", "title": "Year"},
+    {"field": "age", "type": "nominal", "title": "Age Group"},
+    {"field": "ethnicity", "type": "nominal", "title": "Ethnicity"},
+    {"field": "sex", "type": "nominal", "title": "Sex"}
+    ]
+    }
+}

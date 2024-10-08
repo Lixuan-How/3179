@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Population Density Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #vis {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Population Density Visualization</h1>
+    <div id="vis"></div>
+
+    <script>
+        // Load the Vega-Lite visualization JSON
+        vegaEmbed('#vis', 'combined_visualisation.vg.json').then(function(result) {
+            // Visualization successfully rendered
+            console.log(result);
+        }).catch(console.error);
+    </script>
+</body>
+</html>

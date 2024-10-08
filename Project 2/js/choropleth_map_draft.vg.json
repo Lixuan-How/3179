@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Population Density of Malaysia States (2022)",
+  "width": 800,
+  "height": 400,
+  "projection": {"type": "equalEarth"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/my.topojson",
+    "format": {"type": "topojson", "feature": "my"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/temporary_normalised_population_2022.csv"
+        },
+        "key": "state",
+        "fields": ["population_density"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "population_density",
+      "type": "quantitative",
+      "scale": {
+        "type": "threshold",
+        "domain": [20, 50, 100, 500, 1000, 8000],
+        "range": [
+          "#ffebeb",
+          "#ffc4c4",
+          "#ff8989",
+          "#ff6262",
+          "#ff1414",
+          "#d80000",
+          "#890000"
+        ]
+      }
+    },
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "State"},
+      {
+        "field": "population_density",
+        "type": "quantitative",
+        "title": "Population number per km^2",
+        "format": ".2f"
+      }
+    ]
+  }
+}

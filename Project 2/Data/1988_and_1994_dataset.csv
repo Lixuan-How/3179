@@ -1,0 +1,30 @@
+state,land_size_sq_km,year,sex,age,ethnicity,population_thousands,population_density
+Johor,19210,1988,both,overall,overall,2031,105.73
+Johor,19210,1994,both,overall,overall,2378.1,123.79
+Kedah,9500,1988,both,overall,overall,1305.4,137.41
+Kedah,9500,1994,both,overall,overall,1466.6,154.38
+Kelantan,15099,1988,both,overall,overall,1124,74.44
+Kelantan,15099,1994,both,overall,overall,1273.7,84.36
+Melaka,1664,1988,both,overall,overall,520.5,312.8
+Melaka,1664,1994,both,overall,overall,574.9,345.49
+Negeri Sembilan,6686,1988,both,overall,overall,683.5,102.23
+Negeri Sembilan,6686,1994,both,overall,overall,772.4,115.52
+Pahang,36137,1988,both,overall,overall,998.4,27.63
+Pahang,36137,1994,both,overall,overall,1152.3,31.89
+Perak,21035,1988,both,overall,overall,1979.5,94.11
+Perak,21035,1994,both,overall,overall,2028.4,96.43
+Perlis,821,1988,both,overall,overall,178.8,217.78
+Perlis,821,1994,both,overall,overall,196.7,239.59
+Pulau Pinang,1049,1988,both,overall,overall,1086.6,1035.84
+Pulau Pinang,1049,1994,both,overall,overall,1195.9,1140.04
+Sabah,73904,1988,both,overall,overall,1629.5,22.05
+Sabah,73904,1994,both,overall,overall,2068.9,27.99
+Sarawak,124450,1988,both,overall,overall,1614.6,12.97
+Sarawak,124450,1994,both,overall,overall,1831.9,14.72
+Selangor,8104,1988,both,overall,overall,2166.9,267.39
+Selangor,8104,1994,both,overall,overall,2978.5,367.53
+Terengganu,13035,1988,both,overall,overall,730.9,56.07
+Terengganu,13035,1994,both,overall,overall,848.6,65.1
+W.P. Kuala Lumpur,243,1988,both,overall,overall,1169.6,4813.17
+W.P. Kuala Lumpur,243,1994,both,overall,overall,1314.4,5409.05
+W.P. Labuan,92,1994,both,overall,overall,60.3,655.43
