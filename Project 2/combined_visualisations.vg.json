@@ -7,7 +7,7 @@
       {
         "width": "container",
         "height": 400,
-        "title": "Population Density in 2022 of Overall Ethnicities, Ages, and Genders",
+        "title": "Population Number",
         "transform": [
           { "filter": "datum.year == 2022" },
           { "filter": "datum.age == 'overall'" },
