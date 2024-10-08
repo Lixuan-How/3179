@@ -17,10 +17,10 @@
         "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/temporary_normalised_population_2022.csv"
         },
         "key": "state",
-        "fields": ["land_size_km^2", "population_thousands"]
+        "fields": ["land_size_km", "population_thousands"]
     }
     },
-    {"calculate": "(datum.population_thousands * 1000)/datum.land_size_km^2", "as": "Density"}
+    {"calculate": "datum.population_thousands/datum.land_size_km", "as": "Density"}
 ],
 "mark": {"type": "geoshape"},
 "encoding": {
@@ -43,6 +43,8 @@
     },
     "tooltip": [
     {"field": "properties.name", "type": "nominal", "title": "State"},
+    {"field": "land_size_km", "type": "quantitative", "title": "Land Size (km²)"},
+  {"field": "population_thousands", "type": "quantitative", "title": "Population (thousands)"},
     {
         "field": "Density",
         "type": "quantitative",
