@@ -1,4 +1,4 @@
-﻿state,land_size_km,year,sex,age,ethnicity,population_thousands,population_density
+﻿state,land_size_sq_km,year,sex,age,ethnicity,population_thousands,population_density
 Johor,19210,2022,both,overall,overall,4028.3,209.6980739
 Kedah,9500,2022,both,overall,overall,2163.1,227.6947368
 Kelantan,15099,2022,both,overall,overall,1830.6,121.2398172
