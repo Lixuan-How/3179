@@ -9,23 +9,37 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.0"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
         }
         #vis-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 20px;
         }
-        #bar-chart, #choropleth-map {
+        #bar-chart{
             width: 800px;
-            height: 600px;
-            margin-bottom: 20px;
+            height: 450px;
+        } 
+        #choropleth-map {
+            width: 800px;
+            height: 500px;
         }
         /* For annotation styling */
         .annotation {
             max-width: 800px;
-            text-align: justify;
+            text-align: center;
             margin-bottom: 20px;
+        }
+        h1, h2 {
+            margin: 0;
+            padding: 10px;
+        }
+        p {
+            margin: 5px 0 10px 0;
         }
     </style>
 </head>
@@ -49,7 +63,7 @@
     <div class="annotation">
         <h2>Population Density by States</h2>
         <p>
-            The choropleth map visualizes the population density across Malaysia's states. r.
+            The choropleth map visualizes the population density across Malaysia's states.
         </p>
     </div>
 
@@ -61,15 +75,12 @@
     // Bar chart
     var specVis1 = "./bar_chart_w10.vg.json";
     var specVis2 = "./choropleth_map_w10.vg.json";
-    const barChartSpec = "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/bar_chart.vg.json";
-    
+
     vegaEmbed('#bar-chart', specVis1).then(function(result) {
         console.log("Bar chart loaded successfully!");
     }).catch(console.error);
 
     // Choropleth map
-    const choroplethMapSpec = "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/choropleth_map.vg.json";
-    
     vegaEmbed('#choropleth-map', specVis2).then(function(result) {
         console.log("Choropleth map loaded successfully!");
     }).catch(console.error);
