@@ -1,0 +1,8 @@
+#bar-chart {
+    margin-bottom: 20px; /* Adjust this value to increase/decrease space */
+}
+
+/* Alternatively, you can use margin-top on the second div */
+#choropleth-map {
+    margin-top: 20px; /* Adjust this value to increase/decrease space */
+}

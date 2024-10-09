@@ -65,17 +65,22 @@
         "filter": "Ethnicity_Selection == null ? datum.ethnicity == 'overall' : datum.ethnicity == Ethnicity_Selection"
       },
       {"calculate": "datum.population_thousands*1000", "as": "Population Number"},
-       {
-      "calculate": "datum.ethnicity == 'overall' ? 'Population Number of Overall Ethnicities in Malaysia States in ' + Year_Selection : 'Population Number of ' + (Ethnicity_Selection ==='bumi_malay' ? 'Bumi Malay' : Ethnicity_Selection === 'bumi' ? 'Bumi' : Ethnicity_Selection === 'chinese' ? 'Chinese' : Ethnicity_Selection === 'indian' ? 'Indian' : Ethnicity_Selection === 'bumi_other' ? 'Bumi Other' : Ethnicity_Selection === 'other' ? 'Other' : Ethnicity_Selection === 'other_citizen' ? 'Other Citizen' : 'Other Non-citizen') + ' in Malaysia States in ' + Year_Selection",
-      "as": "dynamic_title"
-    }
+      {
+        "calculate": "datum.ethnicity == 'overall' ? 'Population Number of Overall Ethnicities in Malaysia States in ' + Year_Selection : 'Population Number of ' + (Ethnicity_Selection ==='bumi_malay' ? 'Bumi Malay' : Ethnicity_Selection === 'bumi' ? 'Bumi' : Ethnicity_Selection === 'chinese' ? 'Chinese' : Ethnicity_Selection === 'indian' ? 'Indian' : Ethnicity_Selection === 'bumi_other' ? 'Bumi Other' : Ethnicity_Selection === 'other' ? 'Other' : Ethnicity_Selection === 'other_citizen' ? 'Other Citizen' : 'Other Non-citizen') + ' in Malaysia States in ' + Year_Selection",
+        "as": "dynamic_title"
+      }
     ],
     "layer": [
       {
         "mark": "bar",
         "encoding": {
           "y": {"field": "state", "type": "nominal", "title": null},
-          "x": {"field": "Population Number", "type": "quantitative"},
+          "x": {
+            "aggregate": "sum",
+            "field": "Population Number",
+            "type": "quantitative",
+            "title": "Total Population"
+          },
           "color": {
             "field": "sex",
             "type": "nominal",
@@ -93,10 +98,39 @@
           "tooltip": [
             {"field": "state", "type": "nominal", "title": "State"},
             {"field": "year", "type": "ordinal", "title": "Year"},
-            {"field": "Population Number", "type": "quantitative"},
-            {"field": "ethnicity", "type": "nominal", "title": "Ethnicity"},
-            {"field": "sex", "type": "nominal", "title": "Sex"}
+            {
+              "aggregate": "sum",
+              "field": "Population Number",
+              "type": "quantitative",
+              "title": "Total Population",
+              "format": ","
+            },
+            {"field": "ethnicity", "type": "nominal", "title": "Ethnicity"}
           ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "fontSize": 7,  
+          "fontWeight": "normal",
+          "color": "black"  
+        },
+        "encoding": {
+          "text": {
+            "aggregate": "sum",
+            "field": "Population Number",
+            "type": "quantitative",
+            "format": ","
+          },
+          "x": {
+            "aggregate": "sum",
+            "field": "Population Number",
+            "type": "quantitative"
+          },
+          "y": {"field": "state", "type": "nominal"}
         }
       },
       {
@@ -112,3 +146,4 @@
       }
     ]
   }
+  
