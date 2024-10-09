@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Population Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.0"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #vis-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #bar-chart, #choropleth-map {
+            width: 800px;
+            height: 600px;
+            margin-bottom: 20px;
+        }
+        /* For annotation styling */
+        .annotation {
+            max-width: 800px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="vis-container">
+    <h1>POPULATION VISUALIZATION IN MALAYSIA</h1>
+
+    <!-- Description for the bar chart -->
+    <div class="annotation">
+        <h2>Population Number by States</h2>
+        <p>
+            This bar chart shows the total population in various states of Malaysia, filtered by year, population number, and ethnicity.
+        </p>
+    </div>
+
+    <!-- Bar chart visualization -->
+    <div id="bar-chart"></div>
+
+    <!-- Description for the choropleth map -->
+    <div class="annotation">
+        <h2>Population Density by States</h2>
+        <p>
+            The choropleth map visualizes the population density across Malaysia's states. r.
+        </p>
+    </div>
+
+    <!-- Choropleth map visualization -->
+    <div id="choropleth-map"></div>
+</div>
+
+<script>
+    // Bar chart
+    var specVis1 = "./bar_chart_w10.vg.json";
+    var specVis2 = "./choropleth_map_w10.vg.json";
+    const barChartSpec = "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/bar_chart.vg.json";
+    
+    vegaEmbed('#bar-chart', specVis1).then(function(result) {
+        console.log("Bar chart loaded successfully!");
+    }).catch(console.error);
+
+    // Choropleth map
+    const choroplethMapSpec = "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/choropleth_map.vg.json";
+    
+    vegaEmbed('#choropleth-map', specVis2).then(function(result) {
+        console.log("Choropleth map loaded successfully!");
+    }).catch(console.error);
+</script>
+
+</body>
+</html>

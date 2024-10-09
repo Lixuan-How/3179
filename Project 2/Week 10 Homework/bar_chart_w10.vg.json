@@ -1,0 +1,137 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 300,
+    "title": "Population Number Of Malaysia States Over The Year",
+    "data": {
+      "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/normalised_population_density.csv"
+    },
+    "params": [
+      {
+        "name": "Year_Selection",
+        "value": 2022,
+        "bind": {
+          "input": "range",
+          "min": 1970,
+          "max": 2024,
+          "step": 1,
+          "name": "Year:  "
+        }
+      },
+      {
+        "name": "Population_Above",
+        "value": 0,
+        "bind": {
+          "input": "range",
+          "min": 0,
+          "max": 3000000,
+          "step": 500,
+          "name": "Minimum Population: "
+        }
+      },
+      {
+        "name": "Ethnicity_Selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "bumi_malay",
+            "bumi",
+            "chinese",
+            "indian",
+            "bumi_other",
+            "other",
+            "other_citizen",
+            "other_noncitizen"
+          ],
+          "labels": [
+            "Show Overall Ethnicities",
+            "Bumi Malay",
+            "Bumi",
+            "Chinese",
+            "Indian",
+            "Bumi Other",
+            "Other",
+            "Other Citizen",
+            "Other Non-citizen"
+          ],
+          "name": "Ethnicity Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum.year == Year_Selection"},
+      {"filter": "datum.age == 'overall'"},
+      {"filter": "datum.sex == 'male' || datum.sex == 'female'"},
+      {"filter": "datum.population_thousands*1000 > Population_Above"},
+      {
+        "filter": "Ethnicity_Selection == null ? datum.ethnicity == 'overall' : datum.ethnicity == Ethnicity_Selection"
+      },
+      {"calculate": "datum.population_thousands*1000", "as": "Population Number"}
+    ],
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "y": {"field": "state", "type": "nominal", "title": null},
+          "x": {
+            "aggregate": "sum",
+            "field": "Population Number",
+            "type": "quantitative",
+            "title": "Total Population"
+          },
+          "color": {
+            "field": "sex",
+            "type": "nominal",
+            "scale": {
+              "domain": ["male", "female"],
+              "range": ["#fc8d62", "#756bb1"]
+            },
+            "legend": {
+              "title": "Gender",
+              "offset": 10,
+              "orient": "left",
+              "labelExpr": "datum.label == 'male' ? 'Male' : 'Female'"
+            }
+          },
+          "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "year", "type": "ordinal", "title": "Year"},
+            {
+              "aggregate": "sum",
+              "field": "Population Number",
+              "type": "quantitative",
+              "title": "Total Population",
+              "format": ","
+            },
+            {"field": "ethnicity", "type": "nominal", "title": "Ethnicity"}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "fontSize": 7,  
+          "fontWeight": "normal",
+          "color": "black"  
+        },
+        "encoding": {
+          "text": {
+            "aggregate": "sum",
+            "field": "Population Number",
+            "type": "quantitative",
+            "format": ","
+          },
+          "x": {
+            "aggregate": "sum",
+            "field": "Population Number",
+            "type": "quantitative"
+          },
+          "y": {"field": "state", "type": "nominal"}
+        }
+      }
+    ]
+  }
+  
