@@ -1,26 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-  
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Population Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.0"></script>
+    <style>
+        body {
+            font-family: serif, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #vis-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        #bar-chart{
+            width: 800px;
+            height: 550px;
+        } 
+        #choropleth-map {
+            width: 800px;
+            height: 500px;
+        }
+        /* For annotation styling */
+        .annotation {
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            margin: 0;
+            padding: 10px;
+        }
+        p {
+            margin: 5px 0 10px 0;
+        }
+    </style>
 </head>
 <body>
-  
-<div id="choropleth_map"></div>
 
-<script type="text/javascript">
+<div id="vis-container">
+    <h1>POPULATION VISUALIZATION IN MALAYSIA</h1>
 
-  var spec2 = "js/choropleth_map.vg.json";
-  vegaEmbed('#choropleth_map', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
+    <!-- Description for the bar chart -->
+    <div class="annotation">
+        <h2>Population Number by States</h2>
+        <p>
+          This bar chart shows the total population in various states of Malaysia, filtered by year, population number, and ethnicity.
+          Use the controls to adjust the year and ethnicity filters to explore population distribution trends over time (1970-2024).
+        </p>
+    </div>
+
+    <!-- Bar chart visualization -->
+    <div id="bar-chart"></div>
+
+    <!-- Description for the choropleth map -->
+    <div class="annotation">
+        <h2>Population Density by States</h2>
+        <p>
+          The choropleth map visualizes the population density across Malaysia's states. It uses color gradients to represent
+          differences in population density, providing a geographical overview of where the highest and lowest densities occur.
+        </p>
+    </div>
+
+    <!-- Choropleth map visualization -->
+    <div id="choropleth-map"></div>
+</div>
+
+<script>
+    // Bar chart
+    var specVis1 = "js/bar_chart.vg.json";
+    var specVis2 = "js/choropleth_map.vg.json";
+
+    vegaEmbed('#bar-chart', specVis1).then(function(result) {
+        console.log("Bar chart loaded successfully!");
+    }).catch(console.error);
+
+    // Choropleth map
+    vegaEmbed('#choropleth-map', specVis2).then(function(result) {
+        console.log("Choropleth map loaded successfully!");
+    }).catch(console.error);
 </script>
 
 </body>
