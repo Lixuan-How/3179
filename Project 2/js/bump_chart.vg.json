@@ -1,0 +1,88 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Rank of Youngster Population by States in Malaysia over 1970 to 2023",
+      "color": "navy",
+      "fontSize": 22,
+      "align": "center",
+      "anchor": "middle",
+      "dy": -20,
+      "baseline": "middle",
+      "subtitleColor": "navy",
+      "subtitleFontSize": 18,
+      "subtitlePadding": 5
+    },
+    "width": 600,
+    "height": 500,
+    "data": {
+      "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Top_16_States_0-4_Age_Population_1970_2023.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {
+        "lookup": "state",
+        "from": {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/statesflag.csv"
+          },
+          "key": "state",
+          "fields": ["ImageURL"]
+        }
+      }
+    ],
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "ordinal",
+        "sort": ["1970", "1985", "2000", "2023"],
+        "title": null,
+        "axis": {
+          "grid": true,
+          "domain": false,
+          "ticks": false,
+          "offset": 20,
+          "labelAngle": 0
+        }
+      },
+      "y": {
+        "field": "Rank",
+        "type": "quantitative",
+        "sort": "descending",
+        "scale": {"domain": [1, 16]},
+        "axis": {"grid": false, "domain": false, "ticks": false, "offset": -40}
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal"},
+        {"field": "Population Number", "type": "quantitative"},
+        {"field": "Rank", "type": "quantitative"}
+      ]
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "size": 5,
+          "point": {
+            "filled": false,
+            "fill": "white",
+            "size": 80,
+            "strokeWidth": 4
+          }
+        },
+        "encoding": {"color": {"field": "state"}, "opacity": {"value": 0.8}}
+      },
+      {
+        "mark": {"type": "image", "width": 40, "height": 20, "tooltip": true},
+        "transform": [
+          {"filter": "datum.year != 1985"},
+          {"filter": "datum.year != 2000"},
+          {
+            "calculate": "datum.population_thousands*1000",
+            "as": "Population Number"
+          }
+        ],
+        "encoding": {"url": {"field": "ImageURL", "type": "nominal"}}
+      }
+    ],
+    "config": {"style": {"cell": {"stroke": "transparent"}}}
+  }
