@@ -2,6 +2,16 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 800,
     "height": 400,
+    "title": {
+      "text": {
+        "signal": "'Population Density of ' + (Ethnicity_Selection === 'bumi_malay' ? 'Bumi Malay' : Ethnicity_Selection === 'bumi' ? 'Bumi' : Ethnicity_Selection === 'chinese' ? 'Chinese' : Ethnicity_Selection === 'indian' ? 'Indian' : Ethnicity_Selection === 'bumi_other' ? 'Bumi Other' : Ethnicity_Selection === 'other' ? 'Other' : Ethnicity_Selection === 'other_citizen' ? 'Other Citizen' : Ethnicity_Selection === 'other_noncitizen' ? 'Other Non-citizen' : 'Overall Ethnicities') + ' in Malaysia States in ' + Year_Selection"
+      },
+      "anchor": "middle",
+      "frame": "group",
+      "fontSize": 18,
+      "font": "Sans-serif",
+      "fontWeight": "bold"
+    },
     "params": [
       {
         "name": "Year_Selection",
@@ -62,19 +72,19 @@
           "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/js/my.topojson",
           "format": {"type": "topojson", "feature": "my"}
         },
-        "transform": [
-          {
-            "calculate": "'Data is not available in ' + datum.properties.name",
-            "as": "note"
-          }
-        ],
         "mark": {
           "type": "geoshape",
           "fill": "lightgray",
           "stroke": "white",
           "strokeWidth": 1
         },
-        "encoding": {"tooltip": {"field": "note"}}
+        "encoding": {
+          "tooltip": {
+            "field": "properties.name",
+            "type": "nominal",
+            "title": "State"
+          }
+        }
       },
       {
         "data": {
@@ -82,7 +92,7 @@
         },
         "transform": [
           {"filter": "datum.year == Year_Selection"},
-          {"filter": "datum.population_thousands*1000 > Population_Above"},
+          {"filter": "datum.population_thousands * 1000 > Population_Above"},
           {
             "filter": "Ethnicity_Selection == null ? datum.ethnicity == 'overall' : datum.ethnicity == Ethnicity_Selection"
           },
@@ -152,29 +162,6 @@
               "format": ".2f"
             }
           ]
-        }
-      },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/normalised_population_density.csv"
-        },
-        "transform": [
-            {
-                "calculate": "datum.ethnicity == 'overall' ? 'Population Number of Overall Ethnicities in Malaysia States in ' + Year_Selection : 'Population Number of ' + (Ethnicity_Selection ==='bumi_malay' ? 'Bumi Malay' : Ethnicity_Selection === 'bumi' ? 'Bumi' : Ethnicity_Selection === 'chinese' ? 'Chinese' : Ethnicity_Selection === 'indian' ? 'Indian' : Ethnicity_Selection === 'bumi_other' ? 'Bumi Other' : Ethnicity_Selection === 'other' ? 'Other' : Ethnicity_Selection === 'other_citizen' ? 'Other Citizen' : 'Other Non-citizen') + ' in Malaysia States in ' + Year_Selection",
-                "as": "dynamic_title"
-              }
-        ],
-        "mark": {
-          "type": "text",
-          "align": "center",
-          "dx": 0,
-          "dy": -250,
-          "fontSize": 16
-        },
-        "encoding": {
-          "text": {"field": "dynamic_title"},
-          "x": {"value": 400},  
-          "y": {"value": 20}
         }
       }
     ]
