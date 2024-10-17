@@ -12,20 +12,34 @@ Sabah,73904,1970,both,0-4,overall,134.7,6
 Sarawak,124450,1970,both,0-4,overall,177.9,4
 Selangor,8104,1970,both,0-4,overall,253,1
 Terengganu,13035,1970,both,0-4,overall,68.1,11
-Johor,19210,1985,both,0-4,overall,257.7,3
-Kedah,9500,1985,both,0-4,overall,173.9,7
-Kelantan,15099,1985,both,0-4,overall,174.7,6
-Melaka,1664,1985,both,0-4,overall,67.8,13
-Negeri Sembilan,6686,1985,both,0-4,overall,89.7,12
-Pahang,36137,1985,both,0-4,overall,142.3,8
-Perak,21035,1985,both,0-4,overall,291.1,1
-Perlis,821,1985,both,0-4,overall,22.7,14
-Pulau Pinang,1049,1985,both,0-4,overall,116.9,10
-Sabah,73904,1985,both,0-4,overall,241.2,4
-Sarawak,124450,1985,both,0-4,overall,199,5
-Selangor,8104,1985,both,0-4,overall,257.9,2
-Terengganu,13035,1985,both,0-4,overall,111.2,11
-W.P. Kuala Lumpur,243,1985,both,0-4,overall,133.1,9
+Johor,19210,1980,both,0-4,overall,230.9,2
+Kedah,9500,1980,both,0-4,overall,149.6,6
+Kelantan,15099,1980,both,0-4,overall,138.2,7
+Melaka,1664,1980,both,0-4,overall,58.9,13
+Negeri Sembilan,6686,1980,both,0-4,overall,77.9,12
+Pahang,36137,1980,both,0-4,overall,124.6,8
+Perak,21035,1980,both,0-4,overall,247.5,1
+Perlis,821,1980,both,0-4,overall,18.4,14
+Pulau Pinang,1049,1980,both,0-4,overall,112.4,10
+Sabah,73904,1980,both,0-4,overall,190.8,5
+Sarawak,124450,1980,both,0-4,overall,212.6,3
+Selangor,8104,1980,both,0-4,overall,209.4,4
+Terengganu,13035,1980,both,0-4,overall,87.1,11
+W.P. Kuala Lumpur,243,1980,both,0-4,overall,121,9
+Johor,19210,1990,both,0-4,overall,293.6,2
+Kedah,9500,1990,both,0-4,overall,181.3,7
+Kelantan,15099,1990,both,0-4,overall,198.6,6
+Melaka,1664,1990,both,0-4,overall,72.3,13
+Negeri Sembilan,6686,1990,both,0-4,overall,94.3,12
+Pahang,36137,1990,both,0-4,overall,157,8
+Perak,21035,1990,both,0-4,overall,261.7,4
+Perlis,821,1990,both,0-4,overall,25.5,14
+Pulau Pinang,1049,1990,both,0-4,overall,119.9,11
+Sabah,73904,1990,both,0-4,overall,283.3,3
+Sarawak,124450,1990,both,0-4,overall,226.8,5
+Selangor,8104,1990,both,0-4,overall,307,1
+Terengganu,13035,1990,both,0-4,overall,129,10
+W.P. Kuala Lumpur,243,1990,both,0-4,overall,149.4,9
 Johor,19210,2000,both,0-4,overall,318,3
 Kedah,9500,2000,both,0-4,overall,210.1,7
 Kelantan,15099,2000,both,0-4,overall,213,6
@@ -41,6 +55,38 @@ Selangor,8104,2000,both,0-4,overall,456.6,1
 Terengganu,13035,2000,both,0-4,overall,116.1,11
 W.P. Kuala Lumpur,243,2000,both,0-4,overall,166.3,8
 W.P. Labuan,92,2000,both,0-4,overall,11.1,15
+Johor,19210,2010,both,0-4,overall,286.6,3
+Kedah,9500,2010,both,0-4,overall,172,6
+Kelantan,15099,2010,both,0-4,overall,168.9,7
+Melaka,1664,2010,both,0-4,overall,68,13
+Negeri Sembilan,6686,2010,both,0-4,overall,85.5,12
+Pahang,36137,2010,both,0-4,overall,146.9,8
+Perak,21035,2010,both,0-4,overall,183.6,5
+Perlis,821,2010,both,0-4,overall,19.9,14
+Pulau Pinang,1049,2010,both,0-4,overall,114.1,10
+Sabah,73904,2010,both,0-4,overall,310.2,2
+Sarawak,124450,2010,both,0-4,overall,224.9,4
+Selangor,8104,2010,both,0-4,overall,467.3,1
+Terengganu,13035,2010,both,0-4,overall,113.1,11
+W.P. Kuala Lumpur,243,2010,both,0-4,overall,126.4,9
+W.P. Labuan,92,2010,both,0-4,overall,9.6,16
+W.P. Putrajaya,49,2010,both,0-4,overall,11.5,15
+Johor,19210,2020,both,0-4,overall,306.3,2
+Kedah,9500,2020,both,0-4,overall,181,4
+Kelantan,15099,2020,both,0-4,overall,173.8,5
+Melaka,1664,2020,both,0-4,overall,83.1,13
+Negeri Sembilan,6686,2020,both,0-4,overall,92.4,12
+Pahang,36137,2020,both,0-4,overall,135.3,8
+Perak,21035,2020,both,0-4,overall,170.2,6
+Perlis,821,2020,both,0-4,overall,19.1,14
+Pulau Pinang,1049,2020,both,0-4,overall,117.6,10
+Sabah,73904,2020,both,0-4,overall,291.2,3
+Sarawak,124450,2020,both,0-4,overall,155.8,7
+Selangor,8104,2020,both,0-4,overall,532.4,1
+Terengganu,13035,2020,both,0-4,overall,109.4,11
+W.P. Kuala Lumpur,243,2020,both,0-4,overall,129.1,9
+W.P. Labuan,92,2020,both,0-4,overall,10,16
+W.P. Putrajaya,49,2020,both,0-4,overall,12.9,15
 Johor,19210,2023,both,0-4,overall,266.2,3
 Kedah,9500,2023,both,0-4,overall,172.1,5
 Kelantan,15099,2023,both,0-4,overall,176.4,4
