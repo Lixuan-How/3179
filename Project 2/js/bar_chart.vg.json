@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 550,
+  "width": 600,
   "height": 320,
   "title": {
     "text": {
@@ -126,7 +126,7 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 7,
+        "fontSize": 9,
         "fontWeight": "bold",
         "fontStyle": "italic",
         "color": "black"
