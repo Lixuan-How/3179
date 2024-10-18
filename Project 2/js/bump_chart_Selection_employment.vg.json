@@ -11,7 +11,7 @@
           "subtitleFontSize": 18
         },
         "width": 800,
-        "height": 650,
+        "height": 600,
         "data": {
           "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Top_16_Employment_Rate_by_State.csv",
           "format": {"type": "csv"}
@@ -33,7 +33,7 @@
             "field": "year",
             "type": "ordinal",
             "sort": ["1982", "1990", "2001", "2005", "2010", "2015", "2020"],
-            "axis": {"labelAngle": 0}
+            "axis": {"labelAngle": 0, "title": "Year"}
           },
           "y": {
             "field": "Rank",
@@ -41,35 +41,17 @@
             "sort": "descending",
             "scale": {"domain": [0.5, 16.5]}
           },
-        "color": {
-            "field": "state",
-            "bandPosition": 0,
-            "legend": null,
-            "scale": {
-                "range": [
-                    "#8dd3c7",
-                    "#bc80bd",
-                    "#bebada",
-                    "#fb8072",
-                    "#80b1d3",
-                    "#fdb462",
-                    "#b3de69",
-                    "#fccde5",
-                    "#d9d9d9"
-                ]
-            }
+          "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "year", "type": "quantitative", "as": "Year"},
+            {
+              "field": "Overall_Employment_Rate",
+              "type": "quantitative",
+              "format": ".4f"
+            },
+            {"field": "Rank", "type": "quantitative"}
+          ]
         },
-        "opacity": {"value": 0.85},
-        "tooltip": [
-        {"field": "state", "type": "nominal", "title": "State"},
-        {
-            "field": "Overall_Employment_Rate",
-            "type": "quantitative",
-            "format": ".4f"
-        },
-        {"field": "Rank", "type": "quantitative"}
-        ]
-    },
         "layer": [
           {
             "params": [
@@ -87,23 +69,34 @@
                 "fill": "white",
                 "size": 50,
                 "strokeWidth": 4
+              } 
+            },
+            "encoding": {
+              "color": {
+              "field": "state",
+              "bandPosition": 0,
+              "legend": null,
+              "scale": {
+                "range": [
+                  "#8dd3c7",
+                  "#bc80bd",
+                  "#bebada",
+                  "#fb8072",
+                  "#80b1d3",
+                  "#fdb462",
+                  "#b3de69",
+                  "#fccde5",
+                  "#b5b5b5"
+                ]
               }
+              },
+            "opacity": {"value": 0.85}
             }
           },
           {
             "mark": {"type": "image", "width": 50, "height": 27, "tooltip": true},
             "transform": [
-              {
-                "lookup": "state",
-                "from": {
-                  "data": {
-                    "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Top_16_Employment_Rate_by_State.csv",
-                    "format": {"type": "csv"}
-                  },
-                  "key": "state",
-                  "fields": ["Overall_Employment_Rate", "year"]
-                }
-              },
+               {"filter": "datum.year != 1982"},
               {"filter": "datum.year != 1990"},
               {"filter": "datum.year != 2001"},
               {"filter": "datum.year != 2005"},
@@ -119,88 +112,147 @@
               }
             ],
             "encoding": {
-              "url": {"field": "ImageURL", "type": "nominal"},
-              "tooltip": [
-                {"field": "state", "type": "nominal"},
-                {
-                  "field": "Overall_Employment_Rate",
-                  "type": "quantitative",
-                  "format": ".2f"
-                }
-              ]
+              "url": {"field": "ImageURL", "type": "nominal"}
             }
           }
         ]
       },
-      {
-        "width": 600,
-        "height": 300,
-        "title": {
-          "text": "Employment Rate by Sex (1982-2020)",
-          "subtitle": "Selected State's Male and Female Employment Trends",
-          "subtitleColor": "gray",
-          "subtitleFontStyle": "italic",
-          "fontSize":22,
-          "dy": -20
-        },
-        "encoding": {
-          "x": {
-            "field": "year",
-            "title": "Year",
-            "type": "quantitative",
-            "axis": {"labelAngle": 0, "format": ""}
+        {
+          "width": 800,
+          "height": 300,
+          "title": {
+            "text": "Employment Rate by Sex (1982-2020)",
+            "subtitle": "Selected State's Male and Female Employment Trends",
+            "subtitleColor": "darkgray",
+            "subtitleFontStyle": "italic",
+            "fontSize":22,
+            "dy": -20
           },
-          "y": {"field": "Employment_Rate", "type": "quantitative"},
-          "color": {"field": "sex", "type": "nominal"},
-          "tooltip": [
-            {"field": "Employment_Rate", "type": "quantitative", "format": ".2f"},
-            {"field": "sex", "type": "nominal", "title": "Gender"},
-            {"field": "year", "type": "nominal", "title": "Year"},
-            {"field": "state", "type": "nominal"}
-          ]
-        },
-        "layer": [
-          {
+          "encoding": {
+            "x": {
+              "field": "year",
+              "title": "Year",
+              "type": "quantitative",
+              "axis": {"labelAngle": 0, "format": ""}
+            },
+            "y": {"title": "Employment Rate","field": "Employment_Rate", "type": "quantitative"},
+            "color": {"field": "sex", "type": "nominal"},
+            "tooltip": [
+              {"field": "Employment_Rate", "type": "quantitative", "format": ".2f"},
+              {"field": "sex", "type": "nominal", "title": "Gender"},
+              {"field": "year", "type": "nominal", "title": "Year"},
+              {"field": "state", "type": "nominal"}
+            ]
+          },
+          "layer": [
+            {
             "data": {
-              "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Employment_rate_1982_2020.csv",
+              "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Overall_Employment_Rate_1982_2020.csv",
               "format": {"type": "csv"}
             },
+            "transform": [
+              {
+                "filter": {
+                  "param": "stateSelect",
+                  "empty": true
+                }
+              }
+            ],
             "mark": {"type": "line", "tooltip": true, "point": {"filled": true}},
-            "transform": [{"filter": {"param": "stateSelect"}}]
-          },
-          {
-            "data": {
-              "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Employment_rate_1982_2020.csv",
-              "format": {"type": "csv"}
-            },
-            "mark": {"type": "text", "fontSize": 15, "align": "left", "dx": 10},
-            "transform": [
-              {"filter": {"param": "stateSelect", "empty": false}},
-              {"filter": "datum.year == 2020"},
-              {"calculate": "datum.state", "as": "state"}
-            ],
             "encoding": {
-              "text": {"condition": {"param": "stateSelect", "field": "state"}}
+              "x": {"field": "year", "type": "quantitative", "axis": {"labelAngle": 0}},
+              "y": {"field": "Overall_Employment_Rate", "type": "quantitative"},
+              "color": {"field": "state", "type": "nominal"},
+              "tooltip": [
+                {"field": "Overall_Employment_Rate", "type": "quantitative", "format": ".2f"},
+                {"field": "state", "type": "nominal", "title": "State"},
+                {"field": "year", "type": "quantitative", "title": "Year"}
+              ]
             }
           },
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Employment_rate_1982_2020.csv",
+              "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Overall_Employment_Rate_1982_2020.csv",
               "format": {"type": "csv"}
             },
-            "mark": {"type": "text", "fontSize": 15, "align": "left", "dx": 10},
+            "mark": {"type": "text", "fontSize": 12, "align": "left", "dx": 10},
             "transform": [
-              {"filter": {"param": "stateSelect", "empty": true}},
-              {"filter": "datum.year == 2020"},
-              {"filter": "datum.state == 'Selangor' || datum.Country == 'Johor'"},
-              {"calculate": "datum.state", "as": "State"}
+              {
+                "filter": "datum.year == 2020"
+              },
+              {
+                "filter": {
+                  "param": "stateSelect",
+                  "empty": false
+                }
+              },
+              {
+                "calculate": "datum.state + ', Overall Employment Rate'",
+                "as": "Anno"
+              }
             ],
             "encoding": {
-              "text": {"condition": {"param": "stateSelect", "field": "State"}}
-            }
-          }
-        ]
+              "text": {
+                "field": "Anno"
+              },
+              "x": {
+                "field": "year",
+                "type": "quantitative",
+                "axis": {"labelAngle": 0, "format": ""}
+              },
+              "y": {
+                "field": "Overall_Employment_Rate",
+                "type": "quantitative"
+              },
+              "color": {
+                "field": "state",
+                "type": "nominal",
+                "scale": {
+                    "range": [
+                            "#8dd3c7",
+                            "#bc80bd",
+                            "#bebada",
+                            "#fb8072",
+                            "#80b1d3",
+                            "#fdb462",
+                            "#b3de69",
+                            "#fccde5",
+                            "#b5b5b5"
+                    ]
       }
+    },
+              "tooltip": [
+                {"field": "Overall_Employment_Rate", "type": "quantitative", "format": ".2f"},
+                {"field": "year", "type": "quantitative", "as": "Year"},
+                {"field": "state", "type": "nominal"}
+              ]
+            }
+          },       
+            {
+              "data": {
+                "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Employment_rate_1982_2020.csv",
+                "format": {"type": "csv"}
+              },
+              "mark": {"type": "line", "tooltip": true, "point": {"filled": true}},
+              "transform": [{"filter": {"param": "stateSelect", "empty": false}}]
+            },
+            {
+              "data": {
+                "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Employment_rate_1982_2020.csv",
+                "format": {"type": "csv"}
+              },
+              "mark": {"type": "text", "fontSize": 12, "align": "left", "dx": 10},
+              "transform": [
+                {"filter": {"param": "stateSelect", "empty": false}},
+                {"filter": "datum.year == 2020"},
+                {"calculate": "datum.state + ', ' + datum.sex", "as": "State_Gender"}
+              ],
+              "encoding": {
+                "text": {"condition": {"param": "stateSelect", "field": "State_Gender"}}
+              }
+            }
+          ]
+        }
     ],
     "config": {"style": {"cell": {"stroke": "transparent"}}}
   }
