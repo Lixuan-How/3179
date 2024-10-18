@@ -1,8 +1,16 @@
+body {
+    font-family: sans-serif; /* Set the body font to sans-serif */
+    margin: 0;
+    padding: 0;
+}
+
 #bar-chart {
-    margin-bottom: 20px; /* Adjust this value to increase/decrease space */
+    margin-bottom: 20px; 
+    /* Removed font-family declaration from here */
 }
 
 /* Alternatively, you can use margin-top on the second div */
 #choropleth-map {
-    margin-top: 20px; /* Adjust this value to increase/decrease space */
+    margin-top: 20px;
+    /* Removed font-family declaration from here */
 }
