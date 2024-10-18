@@ -1,0 +1,199 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.1.0.json",
+    "autosize": {"resize": true},
+    "vconcat": [
+      {
+          "title": {
+            "text": "Rank of Employment by States in Malaysia over 1982 to 2020",
+            "color": "navy",
+            "fontSize": 22,
+            "align": "center",
+            "anchor": "middle",
+            "dy": -20,
+            "baseline": "middle",
+            "subtitleColor": "navy",
+            "subtitleFontSize": 18,
+            "subtitlePadding": 5
+          },
+          "width": 800,
+          "height": 600,
+          "data": {
+            "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Top_16_Employment_Rate_by_State.csv",
+            "format": {"type": "csv"}
+          },
+          "transform": [
+            {
+              "lookup": "state",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/statesflag.csv"
+                },
+                "key": "state",
+                "fields": ["ImageURL"]
+              }
+            }
+          ],
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "ordinal",
+              "sort": ["1982", "1990", "2001", "2005", "2010", "2015", "2020"],
+              "title": null,
+              "axis": {
+                "grid": true,
+                "domain": false,
+                "ticks": false,
+                "offset": 20,
+                "labelAngle": 0
+              }
+            },
+            "y": {
+              "field": "Rank",
+              "type": "quantitative",
+              "sort": "descending",
+              "scale": {"domain": [0.5, 16.5]},
+              "axis": {"grid": false, "domain": false, "ticks": false, "offset": -40}
+            },
+            "tooltip": [
+              {"field": "state", "type": "nominal", "title": "State"},
+              {"field": "Total Working Age Population Number", "type": "quantitative", "format": ","},
+              {"field": "Total Employed Population Number", "type": "quantitative", "format": ","},
+              {"field": "Overall_Employment_Rate", "type": "quantitative", "format": ".2f"},
+              {"field": "Rank", "type": "quantitative"}
+            ]
+          },
+          "layer": [
+            {
+              "params": [
+                  {
+                      "name": "select",
+                      "select": {"type": "point", "fields": ["state"]}
+                  }
+              ],
+              "mark": {
+                "type": "line",
+                "size": 5,
+                "cursor": "pointer",
+                "point": {
+                  "filled": false,
+                  "fill": "white",
+                  "size": 80,
+                  "strokeWidth": 4
+                }
+              },
+              "transform": [{
+                  "calculate": "datum.Total_Working_Age_Population*1000",
+                  "as": "Total Working Age Population Number"},
+                  {
+                    "calculate": "datum.Total_employed_population*1000",
+                    "as": "Total Employed Population Number"}],
+              "encoding": {
+                "color": {
+                  "field": "state", 
+                  "scale": {
+                    "range": ["#8dd3c7", "#ffffb3", 
+                    "#d9f0a3", "#6a3d9a", "#238b45", 
+                    "#253494", "#b3de69", "#fccde5", 
+                    "#d9d9d9", "#bc80bd", "#ccebc5", 
+                    "#ffed6f", "#1f78b4", "#e31a1c", "#fb8072", "#7a0177"]}},
+                "opacity": {"value": 0.85}}
+            },
+            {
+              "mark": {"type": "image", "width": 50, "height": 27, "tooltip": true, "cursor": "pointer"},
+              "transform": [
+                  {
+                      "lookup": "state",
+                      "from": {
+                          "data":{
+                              "url": "Top_16_Employment_Rate_by_State.csv",
+                              "format": {"type": "csv"}
+                          },
+                      "key": "state",
+                      "fields": ["Employment_Rate", "year"]
+                      }
+                  },
+                {"filter": "datum.year != 1990"},
+                {"filter": "datum.year != 2001"},
+                {"filter": "datum.year != 2005"},
+                {"filter": "datum.year != 2010"},
+                {"filter": "datum.year != 2015"},
+                {
+                  "calculate": "datum.Total_Working_Age_Population*1000",
+                  "as": "Total Working Age Population Number"
+                },
+                {
+                  "calculate": "datum.Total_employed_population*1000",
+                  "as": "Total Employed Population Number"
+                }
+              ],
+              "encoding": {"url": {"field": "ImageURL", "type": "nominal"}}
+            }
+          ]
+        },
+      {
+        "width": 420,
+        "height": 170,
+        "title": {
+          "text": "Employment Rate by Sex over Year, 1982-2020",
+          "subtitle": "Population recorded based on arrival years and CoB",
+          "subtitleColor": "gray",
+          "subtitleFontStyle": "italic",
+          "dy": -20
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "axis": {"labelAngle": -30}
+          },
+          "y": {"field": "Employment_Rate", "type": "quantitative"},
+          "color": {"field": "sex"},
+          "tooltip": [
+            {"field": "Employment_Rate", "type": "quantitative", "format": ".2f"},
+            {"field": "sex", "type": "nominal"}
+          ]
+        },
+        "layer": [
+          {
+            "data": {
+              "url": "Employment_rate_1982_2020.csv",
+              "format": {"type": "csv"}
+            },
+            "mark": {"type": "line", "tooltip": true, "point": {"filled": true}},
+            "transform": [{"filter": {"param": "select"}}]
+          },
+          {
+            "data": {
+              "url": "Employment_rate_1982_2020.csv",
+              "format": {"type": "csv"}
+            },
+            "mark": {"type": "text", "fontSize": 15, "align": "left", "dx": 10},
+            "transform": [
+              {"filter": {"param": "select", "empty": false}},
+              {"calculate": "datum.state", "as": "state"}
+            ],
+            "encoding": {
+              "text": {"condition": {"param": "select", "field": "state"}}
+            }
+          },
+          {
+            "data": {
+              "url": "Employment_rate_1982_2020.csv",
+              "format": {"type": "csv"}
+            },
+            "mark": {"type": "text", "fontSize": 15, "align": "left", "dx": 10},
+            "transform": [
+              {"filter": {"param": "select", "empty": true}},
+              {"filter": "datum.ArrivalYear == '2011-2020'"},
+              {"filter": "datum.state == 'Selangor' || datum.state == 'Johor'"},
+              {"calculate": "datum.state", "as": "state"}
+            ],
+            "encoding": {
+              "text": {"condition": {"param": "select", "field": "state"}}
+            }
+          }
+        ]
+      }
+    ],
+    "config": {"style": {"cell": {"stroke": "transparent"}}}
+  }

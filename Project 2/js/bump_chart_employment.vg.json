@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-      "text": "Rank of Youngster (0-4 years old) Population by States in Malaysia over 1970 to 2023",
+      "text": "Rank of Employment by States in Malaysia over 1982 to 2020",
       "color": "navy",
       "fontSize": 22,
       "align": "center",
@@ -15,7 +15,7 @@
     "width": 800,
     "height": 600,
     "data": {
-      "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Top_16_States_0-4_Age_Population_1970_2023.csv",
+      "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Top_16_Employment_Rate_by_State.csv",
       "format": {"type": "csv"}
     },
     "transform": [
@@ -34,7 +34,7 @@
       "x": {
         "field": "year",
         "type": "ordinal",
-        "sort": ["1970", "1980", "1990", "2000", "2010", "2020", "2023"],
+        "sort": ["1982", "1990", "2001", "2005", "2010", "2015", "2020"],
         "title": null,
         "axis": {
           "grid": true,
@@ -53,7 +53,9 @@
       },
       "tooltip": [
         {"field": "state", "type": "nominal", "title": "State"},
-        {"field": "Population Number", "type": "quantitative"},
+        {"field": "Total Working Age Population Number", "type": "quantitative", "format": ","},
+        {"field": "Total Employed Population Number", "type": "quantitative", "format": ","},
+        {"field": "Overall_Employment_Rate", "type": "quantitative", "format": ".2f"},
         {"field": "Rank", "type": "quantitative"}
       ]
     },
@@ -70,21 +72,37 @@
           }
         },
         "transform": [{
-            "calculate": "datum.population_thousands*1000",
-            "as": "Population Number"}],
-        "encoding": {"color": {"field": "state"}, "opacity": {"value": 0.8}}
+            "calculate": "datum.Total_Working_Age_Population*1000",
+            "as": "Total Working Age Population Number"},
+            {
+              "calculate": "datum.Total_employed_population*1000",
+              "as": "Total Employed Population Number"}],
+        "encoding": {
+          "color": {
+            "field": "state", 
+            "scale": {
+              "range": ["#8dd3c7", "#ffffb3", 
+              "#d9f0a3", "#6a3d9a", "#238b45", 
+              "#253494", "#b3de69", "#fccde5", 
+              "#d9d9d9", "#bc80bd", "#ccebc5", 
+              "#ffed6f", "#1f78b4", "#e31a1c", "#fb8072", "#7a0177"]}},
+          "opacity": {"value": 0.85}}
       },
       {
-        "mark": {"type": "image", "width": 40, "height": 20, "tooltip": true},
+        "mark": {"type": "image", "width": 50, "height": 27, "tooltip": true},
         "transform": [
-          {"filter": "datum.year != 1980"},
           {"filter": "datum.year != 1990"},
-          {"filter": "datum.year != 2000"},
+          {"filter": "datum.year != 2001"},
+          {"filter": "datum.year != 2005"},
           {"filter": "datum.year != 2010"},
-          {"filter": "datum.year != 2020"},
+          {"filter": "datum.year != 2015"},
           {
-            "calculate": "datum.population_thousands*1000",
-            "as": "Population Number"
+            "calculate": "datum.Total_Working_Age_Population*1000",
+            "as": "Total Working Age Population Number"
+          },
+          {
+            "calculate": "datum.Total_employed_population*1000",
+            "as": "Total Employed Population Number"
           }
         ],
         "encoding": {"url": {"field": "ImageURL", "type": "nominal"}}
