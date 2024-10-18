@@ -72,6 +72,20 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
             z-index: 10; 
         }
+        /* New CSS for bump chart annotation */
+        .bump-chart-annotation {
+            font-family: sans-serif;
+            font-size: small;
+            position: absolute;  
+            bottom: 40px;        
+            right: -170px;     
+            max-width: 200px;  
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 10px;     
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            z-index: 10; 
+        }
     </style>
 </head>
 <body>
@@ -131,7 +145,14 @@
     </div>
 
     <!-- Bump chart visualization -->
-    <div id="bump-chart" class="chart"></div>
+    <div class="flex-container">
+        <div id="bump-chart" class="chart"></div>
+        
+        <!-- Bump chart annotation -->
+        <div class="bump-chart-annotation">
+            <p><strong>The default line chart (without select the state line or image above) is showing the overview of overall employment rate by states.<strong> </p>
+        </div>
+    </div>
 </div>
 
 <script>

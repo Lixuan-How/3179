@@ -1,17 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 600,
-  "height": 320,
+  "height": 350,
   "title": {
     "text": {
       "signal": "'Population Number of ' + (Ethnicity_Selection === 'bumi_malay' ? 'Bumi Malay' : Ethnicity_Selection === 'bumi' ? 'Bumi' : Ethnicity_Selection === 'chinese' ? 'Chinese' : Ethnicity_Selection === 'indian' ? 'Indian' : Ethnicity_Selection === 'bumi_other' ? 'Bumi Other' : Ethnicity_Selection === 'other' ? 'Other' : Ethnicity_Selection === 'other_citizen' ? 'Other Citizen' : Ethnicity_Selection === 'other_noncitizen' ? 'Other Non-citizen' : 'Overall Ethnicities') + ' in Malaysia States in ' + Year_Selection"
     },
     "anchor": "middle",
     "frame": "group",
-    "fontSize": 18,
-    "font": "Sans-serif",
-    "fontWeight": "bold"
-  },
+    "fontSize": 22,
+      "font": "Sans-serif",
+      "fontWeight": "bold",
+      "subtitle": "Use the slider to select a year and filter by ethnicity with a minimum population threshold.",
+      "subtitleFontSize": 16,
+      "subtitleColor": "darkgrey",
+      "subtitleFontStyle": "italic"
+    },
   "data": {
     "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/normalised_population_density.csv"
   },

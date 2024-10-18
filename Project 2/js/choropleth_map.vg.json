@@ -8,9 +8,13 @@
       },
       "anchor": "middle",
       "frame": "group",
-      "fontSize": 18,
+      "fontSize": 22,
       "font": "Sans-serif",
-      "fontWeight": "bold"
+      "fontWeight": "bold",
+      "subtitle": "Use the slider to select a year and filter by ethnicity with a minimum population threshold.",
+      "subtitleFontSize": 16,
+      "subtitleColor": "darkgrey",
+      "subtitleFontStyle": "italic"
     },
     "params": [
       {

@@ -8,10 +8,13 @@
           "fontSize": 22,
           "align": "center",
           "dy": -20,
-          "subtitleFontSize": 18
+          "subtitle": "Click on the image of flag or line to visualize the details of employment rate of selected state over the year.",
+          "subtitleColor": "darkgrey",
+          "subtitleFontSize": 16,
+          "subtitleFontStyle": "italic"
         },
         "width": 800,
-        "height": 600,
+        "height": 520,
         "data": {
           "url": "https://raw.githubusercontent.com/Lixuan-How/3179/refs/heads/main/Project%202/Data/Top_16_Employment_Rate_by_State.csv",
           "format": {"type": "csv"}
@@ -94,7 +97,7 @@
             }
           },
           {
-            "mark": {"type": "image", "width": 50, "height": 27, "tooltip": true},
+            "mark": {"type": "image", "width": 40, "height": 27, "tooltip": true},
             "transform": [
                {"filter": "datum.year != 1982"},
               {"filter": "datum.year != 1990"},
@@ -122,10 +125,11 @@
           "height": 300,
           "title": {
             "text": "Employment Rate by Sex (1982-2020)",
+            "fontSize":22,
             "subtitle": "Selected State's Male and Female Employment Trends",
             "subtitleColor": "darkgray",
             "subtitleFontStyle": "italic",
-            "fontSize":22,
+            "subtitleFontSize": 16,
             "dy": -20
           },
           "encoding": {
@@ -187,7 +191,7 @@
                 }
               },
               {
-                "calculate": "datum.state + ', Overall Employment Rate'",
+                "calculate": "datum.state + ', All Genders'",
                 "as": "Anno"
               }
             ],
