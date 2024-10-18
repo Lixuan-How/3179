@@ -5,11 +5,9 @@
       {
         "title": {
           "text": "Rank of Employment by States in Malaysia (1982-2020)",
-          "color": "navy",
           "fontSize": 22,
           "align": "center",
           "dy": -20,
-          "subtitleColor": "navy",
           "subtitleFontSize": 18
         },
         "width": 800,
@@ -142,6 +140,7 @@
           "subtitle": "Selected State's Male and Female Employment Trends",
           "subtitleColor": "gray",
           "subtitleFontStyle": "italic",
+          "fontSize":22,
           "dy": -20
         },
         "encoding": {
