@@ -145,42 +145,6 @@
         },
         "y": {"field": "state", "type": "nominal"}
       }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "fontSize": 10,
-        "color": "black"
-      },
-      "encoding": {
-        "text": {
-          "value": "The annotations on the left side of the bars"
-        },
-        "x": {
-          "value": 700
-        },
-        "y": {
-          "value": 300 
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "fontSize": 10,
-        "color": "black"
-      },
-      "encoding": {
-        "text": {
-          "value": " represent the total populations of females and males."
-        },
-        "x": {
-          "value": 700 
-        },
-        "y": {
-          "value": 312 
-        }
-      }
     }
   ]
 }
